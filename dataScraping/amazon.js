@@ -1,7 +1,25 @@
 const getAmazonProduct = () => {
-};
+  const data = document.querySelectorAll('.s-result-item');
+  const res = [];
+  data.forEach((card,i)=>{
+      const title = card.querySelector('.a-section.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-2')?.textContent;
+      const imgElem = card.querySelector('.s-image');
+      const imgSrc = imgElem?.getAttribute ? imgElem.getAttribute('src')  :""; 
+
+      res[i] = {
+        "title":title,
+        "image":imgSrc
+      }
+    })  
+    return res;
+  };
+  getAmazonProduct();
+
+  
+  // const price = card.querySelector('.a-price.a-price-whole').textContent;
+  // const price = card.querySelector('.a-size-base.a-link-normal.s-no-hover.s-underline-text.s-underline-link-text.s-link-style.a-text-normal.a-offscreen').textContent;
+  // const price = card.querySelector('.puis-price-instructions-style.a-text-normal.a-offscreen').textContent;
 const img = getImg();
-getAmazonProduct();
 const getImg = () => {
   const imgs = document.querySelectorAll(".s-image");
   imgs.forEach((img) => console.log(img.currentSrc));
