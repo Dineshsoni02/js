@@ -33,17 +33,17 @@ const getMyntraProduct = () => {
 getMyntraProduct();
 
 //AJIO
-// const getAjioProduct = () =>{
-//   const resItem = document.querySelectorAll('.rilrtl-products-list__link');
-//   const res = [];
-//   resItem.forEach((card,i)=>{
-//       const title  = card.querySelector('.nameCls').textContent;
-//       const brandName = card.querySelector('.brand').textContent;
-//       const imgEL = card.querySelector('img.rilrtl-lazy-img') ;    
-//       const image = imgEL.getAttribute? imgEL.getAttribute('src') :"";
-//       const price = card.querySelector('.price').textContent;
-//       res[i] = {brandName,title,image,price};
-//   })
-// return res;
-// }
-// getAjioProduct();
+const getAjioProduct = () =>{
+  const resItem = document.querySelectorAll('.rilrtl-products-list__link');
+  const res = [];
+  resItem.forEach((card,i)=>{
+      const title  = card.querySelector('.nameCls').textContent;
+      const brandName = card.querySelector('.brand').textContent;
+      const imgEL = card.querySelector('img.rilrtl-lazy-img') ;    
+      const image = imgEL.getAttribute? imgEL.getAttribute('src') :"";
+      const price = card.querySelector('.price').textContent;
+      res[i] = {brandName,title,image,price};
+  })
+return res;
+}
+getAjioProduct();
