@@ -1,3 +1,4 @@
+//Amazon
 const getAmazonProduct = () => {
   const data = document.querySelectorAll(".s-result-item");
   const res = [];
@@ -33,17 +34,36 @@ const getMyntraProduct = () => {
 getMyntraProduct();
 
 //AJIO
-const getAjioProduct = () =>{
-  const resItem = document.querySelectorAll('.rilrtl-products-list__link');
+const getAjioProduct = () => {
+  const resItem = document.querySelectorAll(".rilrtl-products-list__link");
   const res = [];
-  resItem.forEach((card,i)=>{
-      const title  = card.querySelector('.nameCls').textContent;
-      const brandName = card.querySelector('.brand').textContent;
-      const imgEL = card.querySelector('img.rilrtl-lazy-img') ;    
-      const image = imgEL.getAttribute? imgEL.getAttribute('src') :"";
-      const price = card.querySelector('.price').textContent;
-      res[i] = {brandName,title,image,price};
-  })
-return res;
-}
+  resItem.forEach((card, i) => {
+    const title = card.querySelector(".nameCls").textContent;
+    const brandName = card.querySelector(".brand").textContent;
+    const imgEL = card.querySelector("img.rilrtl-lazy-img");
+    const image = imgEL.getAttribute ? imgEL.getAttribute("src") : "";
+    const price = card.querySelector(".price").textContent;
+    res[i] = { brandName, title, image, price };
+  });
+  return res;
+};
 getAjioProduct();
+
+//croma
+const getCromaProduct = () => {
+  const resItem = document.querySelectorAll(".product-item");
+  const res = [];
+  resItem.forEach((card, i) => {
+    const title = card.querySelector(".product-title").textContent;
+    const price = card.querySelector(".amount").textContent;
+    const imgEl = card.querySelector(".product-img a img");
+    const image = imgEl.getAttribute ? imgEl.getAttribute("src") : "";
+    res[i] = {
+      title,
+      price,
+      image,
+    };
+  });
+  return res;
+};
+getCromaProduct();
