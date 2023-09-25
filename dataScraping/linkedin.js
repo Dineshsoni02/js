@@ -55,3 +55,36 @@ list.forEach((card) => {
     console.log(occuInfo, occuInfo.includes(`${"software engineer","software developer", "sde", "student"}`));
   });
 }); 
+
+
+
+const list = document.querySelectorAll(".discover-fluid-entity-list--item");
+list.forEach((card) => {
+  const userCard = card.querySelector(".ember-view");
+  const info = ["software engineer", "developer", "sde", "student"];
+  const occupation = userCard.querySelector(
+    ".discover-person-card__occupation"
+  );
+  const occuInfo = occupation.textContent.toLowerCase().trim().split(" ");
+  info.forEach((keyword) => {
+    console.log(occuInfo, occuInfo.includes(`${"software engineer","software developer", "sde", "student"}`));
+  });
+   const connectButton = card.querySelector(".discover-entity-type-card__bottom-container button");
+   console.log(connectButton);
+}); 
+
+const list = document.querySelectorAll(".discover-fluid-entity-list--item");
+list.forEach((card) => {
+  const userCard = card.querySelector(".ember-view");
+  const info = ["software engineer", "developer", "sde", "student"];
+  const occupation = userCard.querySelector(
+    ".discover-person-card__occupation"
+  );
+  const occuInfo = occupation.textContent.toLowerCase().trim().split(" ");
+  // info.forEach((keyword) => {
+  //   console.log(occuInfo, occuInfo.includes(`${"software engineer","software developer", "sde", "student"}`));
+  // });
+   const connectButton = card.querySelector(".discover-entity-type-card__bottom-container button");
+    connectButton.click()
+   console.log(connectButton);
+}); 
