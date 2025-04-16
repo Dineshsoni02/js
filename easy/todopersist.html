@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      input {
+        padding: 10px;
+        width: 250px;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px;
+        margin-left: 10px;
+      }
+      ul {
+        margin-top: 20px;
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin: 10px 0;
+        background: #f0f0f0;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>📝 Persistent To-Do App</h2>
+    <input id="taskInput" placeholder="Enter task" />
+    <button id="btn" onclick="addTask()">Add</button>
+    <button id="clrAll" onclick="clearAll()">Clear All Tasks</button>
+    <ul id="taskList"></ul>
+
+    <script>
+      let tasks = [];
+
+      document.getElementById("taskInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          addTask();
+        }
+      });
+
+      window.onload = function () {
+        console.log("loaded");
+        const saved = localStorage.getItem("tasks");
+        if (saved) {
+          tasks = JSON.parse(saved);
+          renderTasks();
+        }
+      };
+
+      function addTask() {
+        let input = document.getElementById("taskInput").value.trim();
+
+        if (input !== "") {
+          tasks.push({ id: Date.now().toFixed(2), text: input });
+          document.getElementById("taskInput").value = "";
+          saveAndRenderTasks();
+        }
+      }
+
+      function deleteTasks(index) {
+        tasks.splice(index, 1);
+        saveAndRenderTasks();
+      }
+
+      function clearAll() {
+        localStorage.clear();
+        tasks = [];
+        renderTasks();
+      }
+
+      function saveAndRenderTasks() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+      }
+
+      function renderTasks() {
+        let list = document.getElementById("taskList");
+        list.innerHTML = "";
+
+        tasks.forEach((task, index) => {
+          let li = document.createElement("li");
+          li.innerHTML = ` ${index + 1}  ${
+            task.text
+          } <button onclick="deleteTasks(${index})"> Delete</button>  `;
+          list.appendChild(li);
+        });
+      }
+    </script>
+  </body>
+</html>
