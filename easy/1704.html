@@ -106,15 +106,31 @@
         localStorage.setItem("theme", themeName);
       }
 
-    //   window.onload = function () {
-    //     let savedTheme = localStorage.getItem("theme");
+      //   window.onload = function () {
+      //     let savedTheme = localStorage.getItem("theme");
 
-    //     document.documentElement.classList.add(savedTheme);
-    //   };
+      //     document.documentElement.classList.add(savedTheme);
+      //   };
 
       function changeFontSize(value) {
         document.body.style.fontSize = `${value}px`;
       }
+
+      function XO(str) {
+        str.toLowerCase();
+        console.log(str);
+        const xCount = str.split("").filter((c) => c === "x").length;
+        const oCount = str.split("").filter((c) => c === "o").length;
+        console.log(xCount, oCount);
+
+        return xCount === oCount;
+      }
+
+      let r1 = XO("ooxx");
+      let r2 = XO("xooxx");
+      let r3 = XO("ooxXm");
+
+      console.log(r1, r2, r3);
     </script>
   </body>
 </html>
