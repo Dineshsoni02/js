@@ -4,21 +4,117 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script>
+      // Apply theme before CSS loads
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.className = savedTheme;
+        }
+      })();
+    </script>
     <style>
       .highlight {
         background-color: yellow;
       }
+      body {
+        font-family: Arial;
+        text-align: center;
+        padding: 50px;
+        transition: all 0.5s ease;
+      }
+      .theme-btn {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+      }
+      .dark {
+        color: white;
+        background-color: #121212;
+      }
+      .light {
+        color: #121212;
+        background-color: #f2f2f2;
+      }
+      .colorful {
+        background: linear-gradient(to right, #ff6b6b, #f9d423);
+        color: #f2f2f2;
+      }
+      .blueMode {
+        color: #f2f2f2;
+        background: linear-gradient(to right, blue, #09c9e2);
+      }
     </style>
   </head>
   <body>
-    <h2 id="title">This is the 1704 page</h2>
+    <button class="theme-btn" onclick="setTheme('light')">Light</button>
+    <button class="theme-btn" onclick="setTheme('dark')">Dark</button>
+    <button class="theme-btn" onclick="setTheme('colorful')">Colorful</button>
+    <button class="theme-btn" onclick="setTheme('blueMode')">Blue Mode</button>
+    <input
+      type="text"
+      id="fontSize"
+      placeholder="Enter font size"
+      oninput="changeFontSize(this.value)"
+    />
+    <h2 id="title">Click me!</h2>
+    <p id="pa"></p>
 
-    <script>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nesciunt
+      itaque laudantium ipsa consectetur numquam, iste omnis quis cupiditate
+      ullam, soluta atque id nihil sit eaque suscipit explicabo voluptatibus
+      odit!
+    </p>
+    <b>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni et magnam
+      deserunt voluptatum exercitationem repellat iusto repellendus voluptas
+      totam, vel illum nostrum unde, fuga voluptatibus optio laborum labore
+      quis? Itaque?
+    </b>
+
+    <!-- <script>
       let text = document.getElementById("title");
+      let pa = document.getElementById("pa");
 
       text.addEventListener("click", () => {
         text.classList.toggle("highlight");
+        text.textContent = "Changed!";
+        pa.innerHTML = "<span>HI from span</span>";
+        pa.style.backgroundColor = "grey";
+        pa.style.color = "white";
+        text.style.fontSize = "25px";
+
+        const newP = document.createElement("pq");
+        newP.textContent = "New p";
+        pa.appendChild(newP);
+        const bold = document.createElement("strong");
+        bold.textContent = "World!";
+        const newDiv = document.createElement("div");
+        newDiv.append("Hello ", bold);
+        document.body.append(newDiv);
       });
+    </script> -->
+
+    <script>
+      function setTheme(themeName) {
+        document.documentElement.className = "";
+        document.documentElement.classList.add(themeName);
+        localStorage.setItem("theme", themeName);
+      }
+
+    //   window.onload = function () {
+    //     let savedTheme = localStorage.getItem("theme");
+
+    //     document.documentElement.classList.add(savedTheme);
+    //   };
+
+      function changeFontSize(value) {
+        document.body.style.fontSize = `${value}px`;
+      }
     </script>
   </body>
 </html>
