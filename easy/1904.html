@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+
+      input {
+        padding: 10px;
+        width: 250px;
+      }
+
+      button {
+        padding: 10px;
+        margin-left: 10px;
+      }
+
+      .filters button {
+        margin: 5px;
+      }
+
+      li {
+        margin: 10px 0;
+        list-style: none;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .done {
+        text-decoration: line-through;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>✅ Filtered To-Do App</h2>
+    <input id="taskInput" placeholder="Enter task" />
+    <button onclick="addTask()">Add</button>
+
+    <div class="filters">
+      <button onclick="setFilter('all')">All</button>
+      <button onclick="setFilter('pending')">Pending</button>
+      <button onclick="setFilter('done')">Done</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <script></script>
+  </body>
+</html>
+
+<!-- <script>
+  //   let nums = [1, 2, 3, 4, 10, 20, 30];
+  //   //map
+  //   let doubled = nums.map((num) => num * 2);
+  //   console.log(doubled);
+
+  //   //filter
+  //   let filtered = nums.filter((num) => num > 8);
+  //   console.log(filtered);
+  //   //reduce
+  //   let sum = nums.reduce((sum, curr) => sum + curr, 0);
+  //   console.log(sum);
+</script> -->
