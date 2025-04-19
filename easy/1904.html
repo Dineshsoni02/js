@@ -79,6 +79,12 @@
         renderTasks();
       }
 
+      function deleteTask(index) {
+        tasks.splice(index, 1);
+
+        renderTasks();
+      }
+
       function renderTasks() {
         let filteredTasks = tasks;
 
@@ -90,12 +96,17 @@
 
         let list = document.getElementById("taskList");
         list.innerHTML = "";
-        filteredTasks.map((task, index) => {
+        filteredTasks.forEach((task, index) => {
+          let realIndex = tasks.indexOf(task);
+
           let li = document.createElement("li");
           li.innerHTML = `
                   <span class="${
                     task.done ? "done" : ""
-                  }" onclick="toggleFilter(${index})"  > ${task.text} </span>
+                  }" onclick="toggleFilter(${realIndex})"  > ${task.text}
+
+                  </span>
+                  <button onclick="deleteTask(${realIndex})"> Delete</button>
 
                 `;
           list.appendChild(li);
