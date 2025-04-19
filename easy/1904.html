@@ -54,7 +54,54 @@
 
     <ul id="taskList"></ul>
 
-    <script></script>
+    <script>
+      let tasks = [];
+      let currentFilter = "all";
+
+      function addTask() {
+        let input = document.getElementById("taskInput");
+        let text = input.value.trim();
+
+        if (text !== "") {
+          tasks.push({ text, done: false });
+          input.value = "";
+          renderTasks();
+        }
+      }
+
+      function toggleFilter(index) {
+        tasks[index].done = !tasks[index].done;
+        renderTasks();
+      }
+
+      function setFilter(filter) {
+        currentFilter = filter;
+        renderTasks();
+      }
+
+      function renderTasks() {
+        let filteredTasks = tasks;
+
+        if (currentFilter === "done") {
+          filteredTasks = tasks.filter((t) => t.done);
+        } else if (currentFilter === "pending") {
+          filteredTasks = tasks.filter((t) => !t.done);
+        }
+
+        let list = document.getElementById("taskList");
+        list.innerHTML = "";
+        filteredTasks.map((task, index) => {
+          let li = document.createElement("li");
+          li.innerHTML = `
+                  <span class="${
+                    task.done ? "done" : ""
+                  }" onclick="toggleFilter(${index})"  > ${task.text} </span>
+
+                `;
+          list.appendChild(li);
+        });
+      }
+    </script>
   </body>
 </html>
 
