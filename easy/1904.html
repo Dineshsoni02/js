@@ -51,12 +51,21 @@
       <button onclick="setFilter('pending')">Pending</button>
       <button onclick="setFilter('done')">Done</button>
     </div>
+    <p id="completed">0</p>
 
     <ul id="taskList"></ul>
 
     <script>
       let tasks = [];
       let currentFilter = "all";
+
+      window.onload = () => {
+        let savedTasks = localStorage.getItem("savedTasks");
+        if (savedTasks) {
+          tasks = JSON.parse(savedTasks);
+          renderTasks();
+        }
+      };
 
       function addTask() {
         let input = document.getElementById("taskInput");
@@ -88,8 +97,16 @@
       function renderTasks() {
         let filteredTasks = tasks;
 
+        localStorage.setItem("savedTasks", JSON.stringify(filteredTasks));
+
+        let doneCount = tasks.filter((t) => t.done).length;
+        updateCount(doneCount);
+
         if (currentFilter === "done") {
           filteredTasks = tasks.filter((t) => t.done);
+          let doneCount = 0;
+          doneCount = filteredTasks.length;
+          updateCount(doneCount);
         } else if (currentFilter === "pending") {
           filteredTasks = tasks.filter((t) => !t.done);
         }
@@ -111,6 +128,11 @@
                 `;
           list.appendChild(li);
         });
+      }
+
+      function updateCount(count) {
+        let countBadge = document.getElementById("completed");
+        countBadge.textContent = `✅ Completed Tasks: ${count}`;
       }
     </script>
   </body>
