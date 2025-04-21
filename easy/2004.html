@@ -52,8 +52,12 @@
           <img src=${user.picture.large} alt=${user.name.first} />
           <h3>${user.name.first} ${user.name.last}  </h3>
           <p>${user.email}</p>
-          <p>📍${user.location.city},${user.location.state},${user.location.country} </p>
-            
+          <p>📍kde ki se: ${user.location.city},${user.location.state},${
+              user.location.country
+            } </p>
+          <p>${user.dob.age} ki</p>  
+          <p>le phone number : ${user.cell} </p>  
+          <p>${user.gender == "male" ? "Log" : "Lugai"} s</p>  
             `;
           })
           .catch((error) => console.log(error));
