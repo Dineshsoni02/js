@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        padding: 50px;
+      }
+
+      .card {
+        background: #f5f5f5;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      }
+
+      img {
+        border-radius: 50%;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🎲 Random User Generator</h2>
+
+    <div class="card" id="userCard">
+      <p>Click the button to load user 👇</p>
+    </div>
+    <button onclick="loadUser()">Load User</button>
+
+    <script>
+      function loadUser() {
+        fetch("https://randomuser.me/api")
+          .then((res) => res.json())
+          .then((data) => {
+            let user = data.results[0];
+            console.log(user);
+
+            document.getElementById("userCard").innerHTML = ` 
+          <img src=${user.picture.large} alt=${user.name.first} />
+          <h3>${user.name.first} ${user.name.last}  </h3>
+          <p>${user.email}</p>
+          <p>📍${user.location.city},${user.location.state},${user.location.country} </p>
+            
+            `;
+          })
+          .catch((error) => console.log(error));
+      }
+    </script>
+
+    <!-- <script>
+      //Promise
+      //   const myPromise = new Promise((resolve, reject) => {
+      //     const success = false;
+
+      //     if (success) {
+      //       resolve("It worked!");
+      //     } else {
+      //       reject("It failed!!");
+      //     }
+      //   });
+
+      //   myPromise
+      //     .then((res) => console.log(res))
+      //     .catch((error) => console.log(error));
+
+      // async | await
+      function wait(ms) {
+        return new Promise((res) => setTimeout(res, ms));
+      }
+
+      async function doSomething() {
+        console.log("waiting");
+        await wait(2000);
+        console.log("Done");
+      }
+      doSomething();
+
+      function wait(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      async function startCountdown() {
+        const countEl = document.getElementById("count");
+
+        for (let i = 5; i >= 0; i--) {
+          countEl.textContent = i;
+          await wait(1000); // Wait for 1 second
+        }
+
+        countEl.textContent = "🚀 Liftoff!";
+      }
+
+      startCountdown();
+    </script> -->
+  </body>
+</html>
