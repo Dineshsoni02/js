@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Accordion</title>
+    <style>
+      body {
+        font-family: Arial;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .faq {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+
+      .question {
+        background: #f5f5f5;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .answer {
+        padding: 15px;
+        display: none;
+        background: #fff;
+      }
+
+      .answer.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>📚 FAQ Section</h2>
+    <div id="faqContainer">
+      <div class="faq">
+        <div class="question">1️⃣ What is JavaScript?</div>
+        <div class="answer">
+          JavaScript is a programming language used for web development.
+        </div>
+      </div>
+
+      <div class="faq">
+        <div class="question">2️⃣ What is DOM?</div>
+        <div class="answer">
+          DOM is Document Object Model – structure of HTML elements.
+        </div>
+      </div>
+
+      <div class="faq">
+        <div class="question">3️⃣ What is API?</div>
+        <div class="answer">
+          API is a way for two systems to talk to each other.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .querySelector("#faqContainer")
+        .addEventListener("click", function (e) {
+          if (e.target.classList.contains("question")) {
+            const answer = e.target.nextElementSibling;
+            answer.classList.toggle("active");
+          }
+        });
+    </script>
+  </body>
+</html>
