@@ -2,9 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>My Notes App</title>
     <style>
       body {
         font-family: Arial;
@@ -13,9 +11,9 @@
         padding: 20px;
       }
 
+      input,
       textarea {
         width: 100%;
-        height: 100px;
         margin-bottom: 10px;
         padding: 10px;
         font-size: 16px;
@@ -42,11 +40,20 @@
         color: red;
         font-weight: bold;
       }
+
+      .note h3 {
+        margin: 0 0 5px 0;
+      }
+
+      .note small {
+        color: gray;
+      }
     </style>
   </head>
   <body>
     <h2>📝 My Notes App</h2>
 
+    <input id="noteTitle" placeholder="Note Title" />
     <textarea id="noteInput" placeholder="Write your note here..."></textarea>
     <button onclick="addNote()">Add Note</button>
     <button onclick="clearAllNotes()">Clear All Notes</button>
@@ -57,12 +64,17 @@
       let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
       function addNote() {
-        let input = document.getElementById("noteInput");
-        let text = input.value.trim();
-        if (text !== "") {
-          notes.push({ text, timeStamp: new Date().toLocaleTimeString() });
+        let title = document.getElementById("noteTitle").value.trim();
+        let content = document.getElementById("noteInput").value.trim();
+        if (content !== "") {
+          notes.push({
+            title: title || "Untitled",
+            content,
+            createdAt: new Date().toLocaleString(),
+          });
           localStorage.setItem("notes", JSON.stringify(notes));
-          input.value = "";
+          document.getElementById("noteTitle").value = "";
+          document.getElementById("noteInput").value = "";
           renderNotes();
         }
       }
@@ -78,16 +90,14 @@
         list.innerHTML = "";
         notes.forEach((note, index) => {
           let newDiv = document.createElement("div");
+          newDiv.classList.add("note");
 
           newDiv.innerHTML = `
-                ${note.text}
-
-                <button  onclick="deleteNote(${index})" > x</button>
-            <br/>
-            created At : ${note.timeStamp} 
-           
-
-            `;
+            <span class="delete" onclick="deleteNote(${index})">×</span>
+            <h3>${note.title}</h3>
+            <p>${note.content}</p>
+            <small>Created At: ${note.createdAt}</small>
+          `;
           list.appendChild(newDiv);
         });
       }
