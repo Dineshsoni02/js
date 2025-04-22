@@ -59,7 +59,7 @@
         let input = document.getElementById("noteInput");
         let text = input.value.trim();
         if (text !== "") {
-          notes.push({ text });
+          notes.push({ text, timeStamp: new Date().toLocaleTimeString() });
           localStorage.setItem("notes", JSON.stringify(notes));
           input.value = "";
           renderNotes();
@@ -82,6 +82,9 @@
                 ${note.text}
 
                 <button  onclick="deleteNote(${index})" > x</button>
+            <br/>
+            created At : ${note.timeStamp} 
+           
 
             `;
           list.appendChild(newDiv);
