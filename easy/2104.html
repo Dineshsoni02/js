@@ -49,6 +49,7 @@
 
     <textarea id="noteInput" placeholder="Write your note here..."></textarea>
     <button onclick="addNote()">Add Note</button>
+    <button onclick="clearAllNotes()">Clear All Notes</button>
 
     <div id="notesList"></div>
 
@@ -89,6 +90,12 @@
             `;
           list.appendChild(newDiv);
         });
+      }
+
+      function clearAllNotes() {
+        localStorage.removeItem("notes");
+        notes = [];
+        renderNotes();
       }
 
       renderNotes();
