@@ -54,40 +54,42 @@
   </head>
   <body>
     <h2>📚 FAQ Section</h2>
-    <div id="faqContainer">
-      <div class="faq">
-        <div class="question">
-          1️⃣ What is JavaScript?
-          <span class="icon">➕</span>
-        </div>
-
-        <div class="answer">
-          JavaScript is a programming language used for web development.
-        </div>
-      </div>
-
-      <div class="faq">
-        <div class="question">
-          2️⃣ What is DOM?
-          <span class="icon">➕</span>
-        </div>
-        <div class="answer">
-          DOM is Document Object Model – structure of HTML elements.
-        </div>
-      </div>
-
-      <div class="faq">
-        <div class="question">
-          3️⃣ What is API?
-          <span class="icon">➕</span>
-        </div>
-        <div class="answer">
-          API is a way for two systems to talk to each other.
-        </div>
-      </div>
-    </div>
+    <div id="faqContainer"></div>
 
     <script>
+      const faqs = [
+        {
+          question: "1️⃣ What is JavaScript?",
+          answer:
+            "JavaScript is a programming language used for web development.",
+        },
+        {
+          question: "2️⃣ What is DOM?",
+          answer: "DOM is Document Object Model – structure of HTML elements.",
+        },
+        {
+          question: "3️⃣ What is API?",
+          answer: "API is a way for two systems to talk to each other.",
+        },
+      ];
+
+      const faqDiv = document.getElementById("faqContainer");
+
+      faqs.forEach((faq) => {
+        let div = document.createElement("div");
+        div.className = "faq";
+        div.innerHTML = `
+            <div class="question">
+              ${faq.question} <span class="icon">➕</span>
+              </div>
+              <div class="answer">
+                ${faq.answer}
+                </div>
+            
+            `;
+        faqDiv.appendChild(div);
+      });
+
       document
         .querySelector("#faqContainer")
         .addEventListener("click", function (e) {
@@ -98,8 +100,22 @@
             const questionDiv = e.target.closest(".question");
 
             const answer = questionDiv.nextElementSibling;
-            answer.classList.toggle("active");
             const icon = questionDiv.querySelector(".icon");
+
+            //step 1 remove all active class
+            document.querySelectorAll(".answer").forEach((ans) => {
+              if (ans !== answer) {
+                ans.classList.remove("active");
+              }
+            });
+            //step 2 remove icon rotate
+            document.querySelectorAll(".icon").forEach((ic) => {
+              if (ic !== icon) {
+                ic.classList.remove("rotate");
+              }
+            });
+            //step 3 do toggle
+            answer.classList.toggle("active");
             icon.classList.toggle("rotate");
           }
         });
