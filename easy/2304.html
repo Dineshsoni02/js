@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Filter</title>
+    <style>
+      body {
+        font-family: Arial;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+      }
+      .product {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin: 5px 0;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🛍️ Product List</h2>
+    <button onclick="showAll()">Show All</button>
+    <button onclick="filterCheap()">Filter < ₹25000</button>
+    <div id="list"></div>
+
+    <script>
+      const products = [
+        { name: "Laptop", price: 50000 },
+        { name: "Phone", price: 20000 },
+        { name: "Tablet", price: 30000 },
+        { name: "Monitor", price: 15000 },
+      ];
+
+      function renderList(items) {
+        document.getElementById("list").innerHTML = items
+          .map((item) => {
+            return `<div class="product">${item.name} - ₹${item.price}</div>`;
+          }).join("");
+      }
+
+      function showAll() {
+        renderList(products);
+      }
+
+      function filterCheap() {
+        const cheap = products.filter((item) => item.price < 25000);
+        renderList(cheap);
+      }
+
+      showAll(); // Initial load
+    </script>
+  </body>
+</html>
