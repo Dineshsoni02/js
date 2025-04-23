@@ -25,16 +25,30 @@
         padding: 15px;
         cursor: pointer;
         font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .answer {
-        padding: 15px;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 15px;
         background: #fff;
+        transition: max-height 0.4s ease, padding 0.4s ease;
       }
 
       .answer.active {
-        display: block;
+        max-height: 200px;
+        padding: 15px;
+      }
+      .icon {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .icon.rotate {
+        transform: rotate(45deg);
       }
     </style>
   </head>
@@ -42,21 +56,31 @@
     <h2>📚 FAQ Section</h2>
     <div id="faqContainer">
       <div class="faq">
-        <div class="question">1️⃣ What is JavaScript?</div>
+        <div class="question">
+          1️⃣ What is JavaScript?
+          <span class="icon">➕</span>
+        </div>
+
         <div class="answer">
           JavaScript is a programming language used for web development.
         </div>
       </div>
 
       <div class="faq">
-        <div class="question">2️⃣ What is DOM?</div>
+        <div class="question">
+          2️⃣ What is DOM?
+          <span class="icon">➕</span>
+        </div>
         <div class="answer">
           DOM is Document Object Model – structure of HTML elements.
         </div>
       </div>
 
       <div class="faq">
-        <div class="question">3️⃣ What is API?</div>
+        <div class="question">
+          3️⃣ What is API?
+          <span class="icon">➕</span>
+        </div>
         <div class="answer">
           API is a way for two systems to talk to each other.
         </div>
@@ -67,11 +91,27 @@
       document
         .querySelector("#faqContainer")
         .addEventListener("click", function (e) {
-          if (e.target.classList.contains("question")) {
-            const answer = e.target.nextElementSibling;
+          if (
+            e.target.classList.contains("question") ||
+            e.target.closest(".question")
+          ) {
+            const questionDiv = e.target.closest(".question");
+
+            const answer = questionDiv.nextElementSibling;
             answer.classList.toggle("active");
+            const icon = questionDiv.querySelector(".icon");
+            icon.classList.toggle("rotate");
           }
         });
+      // another method using foreach
+      // const questions = document.querySelectorAll("#question");
+
+      // questions.forEach(function (question) {
+      //   question.addEventListener("click", function () {
+      //     const answer = this.nextElementSibling;
+      //     answer.classList.toggle("active");
+      //   });
+      // });
     </script>
   </body>
 </html>
