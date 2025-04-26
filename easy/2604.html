@@ -1,0 +1,13 @@
+<script>
+  let str = "aerareaieouioerewou";
+
+  //   function getCount(str) {
+  //     return (str.match(/[aeiou]/gi) || []).length;
+  //   }
+  function getCount(str) {
+    const vowels = ["a", "e", "i", "o", "u"];
+    return str.split("").filter((char) => vowels.includes(char)).length;
+  }
+
+  console.log(getCount(str));
+</script>
