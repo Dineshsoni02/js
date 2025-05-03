@@ -11,3 +11,16 @@
 
   console.log(getCount(str));
 </script>
+
+<script>
+  function past(h, m, s) {
+    let currTime = new Date().getTime();
+
+    const ms = (h * 3600 + m * 60 + s) * 1000;
+
+    return currTime - ms;
+  }
+
+  const passed = past(0, 1, 1);
+  console.log(passed);
+</script>
