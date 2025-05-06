@@ -1,0 +1,26 @@
+<script>
+  let input = [
+    [18, 20],
+    [45, 2],
+    [61, 12],
+    [37, 6],
+    [21, 21],
+    [78, 9],
+  ];
+
+  function openOrSenior(data) {
+    // console.log(data[0][0]);
+    let res = [];
+    for (let i of data) {
+      if (i[0] >= 55 && i[1] > 7) {
+        res.push("Senior");
+    } else {
+        res.push("Open");
+      }
+    }
+    return res;
+  }
+
+  const res = openOrSenior(input);
+  console.log(res);
+</script>
