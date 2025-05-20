@@ -1,5 +1,5 @@
 <script>
-  function likes(names) {
+  function likes1(names) {
     const namesLength = names.length;
 
     if (namesLength === 0) {
@@ -13,6 +13,19 @@
     } else {
       return `${names[0]}, ${names[1]} and ${namesLength - 2} others like this`;
     }
+  }
+  function likes(names) {
+    const [a, b, c] = names;
+    const len = names.length;
+
+    return (
+      {
+        0: `no one likes this`,
+        1: `${a} likes this`,
+        2: `${a} and ${b} likes this`,
+        3: `${a},${b} and  ${c} likes this`,
+      } || `${a},${b} and ${len - 2} others like this`
+    );
   }
 
   const a1 = likes(["Peter"]); //Peter likes this
