@@ -1,11 +1,11 @@
 <script>
   function disemVowel(str) {
     const vowels = ["a", "e", "i", "o", "u"];
-    // return str.split("").filter(vowels).join("");
-    return str
-      .split("")
-      .filter((char) => !vowels.includes(char.toLowerCase()))
-      .join("");
+    // return str
+    //   .split("")
+    //   .filter((char) => !vowels.includes(char.toLowerCase()))
+    //   .join("");
+    return str.replace(/[aeiou]/gi, "");
   }
 
   const res = disemVowel("This website is for losers LOL!");
